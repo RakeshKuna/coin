@@ -1,0 +1,10 @@
+{
+  "test":true,
+  "tokenAddress": "0x438E4EdA71FF4a1531b67Bb366cf22B6F0b9Cd81",
+  "fromAddress": "0x9534dbaab6cd97bcd3cd9a425bc0ccca1523e589",
+  "web3HTTPProvider": "https://ropsten.infura.io/v3/9477aba8fc264f458cd397b6f33f8eab",
+  "timeOut": 180,
+  "blockAwaitBeforeConfirmation": 3,
+  "baseUrl":"https://ropsten.etherscan.io/tx/",
+  "privateKey": "0x3FCDCB4494B787E762B522C58220AADA80CD0418D4CE38AD0B3D8DB8FB581B32"
+}

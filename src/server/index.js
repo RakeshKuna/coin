@@ -256,6 +256,8 @@ app.post("/api/transferData",async function(req, res){
         if(insertresp){
             console.log("Assignment start...");
             MlcTransactionsTokenAssignmentMethods.startAssignment();
+           // MlcTransactionsTokenAssignmentMethods.getTransHashStatus();
+
         }
 
         console.log("After Insert:", JSON.stringify(insertresp));
@@ -385,11 +387,15 @@ else {
     }
 }
 
+const MlcTr = require("./methods/mlcTransactionsTokenAssignments.methods");
 
 async function callSchedulers(){
-    await MlcSchedulers.emailsScheduler();
+    //await MlcSchedulers.emailsScheduler();
     // MlcSchedulers.dailyReport();
+    //MlcTr.startAssignment(""); // karunakar need to check  for testing.....
+    //MlcTr.getTransHashStatus("");
+    MlcSchedulers.statusUpdate("");
 };
 
-//callSchedulers();
+callSchedulers();
 

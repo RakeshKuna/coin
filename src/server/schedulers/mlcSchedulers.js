@@ -156,24 +156,34 @@ const sendNewUsersEmail = async function (checkDate) {
             // To send email to newly registered users.
 const emailsScheduler = async function(){
 
-    var rule = new schedule.RecurrenceRule();
+        var rule = new schedule.RecurrenceRule();
 
-    rule.minute = new schedule.Range(0, 59, 5); // Send email for every 5 minutes..
-        //"*/1 * * * *"
+        rule.minute = new schedule.Range(0, 59, 5); // Send email for every 5 minutes..
+            //"*/1 * * * *"
 
-    await schedule.scheduleJob(rule, async function(){
-        try{
-            //console.log('Email Scheduler task:', moment(moment().toDate()).format("HH:mm:ss A"));
+        await schedule.scheduleJob(rule, async function(){
+            try{
+                //console.log('Email Scheduler task:', moment(moment().toDate()).format("HH:mm:ss A"));
 
-           await MlcSchedulerFunctions.Email_Task1_SendRegistrationSuccess(moment().toDate());
+               await MlcSchedulerFunctions.Email_Task1_SendRegistrationSuccess(moment().toDate());
 
-            //console.log("--- END ---- ");
-        }
-        catch(e){
-            console.log("Exception in Cron:",e);
-        }
-    });
+                //console.log("--- END ---- ");
+            }
+            catch(e){
+                console.log("Exception in Cron:",e);
+            }
+        });
 
 };
 
-module.exports = {dailyReport, emailsScheduler};
+const MlcTr = require("../methods/mlcTransactionsTokenAssignments.methods");
+
+const statusUpdate = function () {
+        console.log("Hello Mr.");
+        cron.schedule('*/5 * * * *', async function () {
+            console.log('Running a task every 5 minute:', moment(moment().toDate()).format("HH:mm:ss A"));
+            await MlcTr.getTransHashStatus();
+        });
+};
+
+module.exports = {dailyReport, emailsScheduler, statusUpdate};
